@@ -4,11 +4,20 @@ var irmaoDoDinossauronaBlackFriday;
 var asfaltoquenaoeasfalto;
 var irmaodoasfalto;
 var aviaodamulhermaravilha;
+var algodaodoce;
+var eupensaqueanuvemeraalgodaodoce;
+var jorginho1;
+var jorginho2;
+var jorginho3;
 
 //arquivos
 function preload(){
 irmaoDoDinossauronaBlackFriday = loadAnimation("trex1.png","trex3.png","trex4.png");  
+eupensaqueanuvemeraalgodaodoce = loadImage ("cloud.png");
 irmaodoasfalto = loadImage ("ground.png");
+jorginho1 = loadImage("obstacle1.png");
+jorginho2 = loadImage("obstacle2.png");
+jorginho3 = loadImage("obstacle3.png");
 }
 
 //configuração
@@ -66,8 +75,38 @@ drawSprites();
 
 //Chamar a função que vai criar as nuvens
 oporcovoltou();
+
+//Chamar a função que vai criar os cactos
+jorge();
 }
 
 function oporcovoltou(){
+if(frameCount%60 === 0) {
+    algodaodoce = createSprite(600,100,40,10);
+    algodaodoce.velocityX = -3;
+    algodaodoce.addImage (eupensaqueanuvemeraalgodaodoce);
+    algodaodoce.y = Math.round(random(10,100));
+    algodaodoce.depth = dinossauroCorrendoNaBlackFriday.depth;
+    dinossauroCorrendoNaBlackFriday.depth +=1;
+}
 
+}
+
+function jorge(){
+   if(frameCount%60 === 0) {
+    var jorginhos = createSprite(600, 165, 10, 40);
+    jorginhos.velocityX = -6;
+    
+    var zeninguem = Math.round(random(1,6));
+
+    switch(zeninguem){
+        case 1: jorginhos.addImage(jorginho1);
+        break;
+        case 2: jorginhos.addImage(jorginho2);
+        break;
+        case 3: jorginhos.addImage(jorginho3);
+        break;
+        default: break;
+    }
+   }
 }
