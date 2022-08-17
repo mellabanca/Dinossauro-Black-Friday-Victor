@@ -9,7 +9,15 @@ var eupensaqueanuvemeraalgodaodoce;
 var jorginho1;
 var jorginho2;
 var jorginho3;
-
+var jorginho4;
+var jorginho5;
+var jorginho6;
+var PONTOSSSS;
+var lanhouse;
+var viajandonamaionese;
+var correnegada = 1;
+var morreumorreu = 0;
+var estado = correnegada;
 //arquivos
 function preload(){
 irmaoDoDinossauronaBlackFriday = loadAnimation("trex1.png","trex3.png","trex4.png");  
@@ -18,10 +26,16 @@ irmaodoasfalto = loadImage ("ground.png");
 jorginho1 = loadImage("obstacle1.png");
 jorginho2 = loadImage("obstacle2.png");
 jorginho3 = loadImage("obstacle3.png");
+jorginho4 = loadImage("obstacle4.png");
+jorginho5 = loadImage("obstacle5.png");
+jorginho6 = loadImage("obstacle6.png");
 }
 
 //configuração
 function setup(){
+
+//valor dos pontos
+PONTOSSSS = 0;
 
 //tela
 createCanvas(600,200);
@@ -46,6 +60,10 @@ borda = createEdgeSprites();
 //número aleatório
 var aleatorio = Math.round(random(1,100));
 console.log(aleatorio);
+
+//criando os grupos de sprites
+lanhouse = new Group();
+viajandonamaionese = new Group();
 }
 
 //desenho
@@ -54,7 +72,14 @@ function draw(){
 
 //cor de fundo
 background("white");
-asfaltoquenaoeasfalto.velocityX = -2;
+
+if(estado === correnegada){
+    asfaltoquenaoeasfalto.velocityX = -2;
+} else if(estado === morreumorreu){
+
+}
+
+
 if(asfaltoquenaoeasfalto.x<0) {
 asfaltoquenaoeasfalto.x = asfaltoquenaoeasfalto.width/2;
 }
@@ -72,6 +97,8 @@ dinossauroCorrendoNaBlackFriday.collide(aviaodamulhermaravilha);
 
 //Desenha todos os sprites
 drawSprites();
+text(PONTOSSSS,500,50);
+PONTOSSSS+=Math.round(frameCount/60);
 
 //Chamar a função que vai criar as nuvens
 oporcovoltou();
@@ -88,6 +115,8 @@ if(frameCount%60 === 0) {
     algodaodoce.y = Math.round(random(10,100));
     algodaodoce.depth = dinossauroCorrendoNaBlackFriday.depth;
     dinossauroCorrendoNaBlackFriday.depth +=1;
+    algodaodoce.lifetime = 300;
+    lanhouse.add(algodaodoce);
 }
 
 }
@@ -106,7 +135,16 @@ function jorge(){
         break;
         case 3: jorginhos.addImage(jorginho3);
         break;
+        case 4: jorginhos.addImage(jorginho4);
+        break;
+        case 5: jorginhos.addImage(jorginho5);
+        break;
+        case 6: jorginhos.addImage(jorginho6);
+        break;
         default: break;
     }
+    jorginhos.scale = 0.5;
+    jorginhos.lifetime = 300;
+    viajandonamaionese.add(jorginhos);
    }
 }
