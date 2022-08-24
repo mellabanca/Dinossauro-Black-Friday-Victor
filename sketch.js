@@ -64,6 +64,10 @@ console.log(aleatorio);
 //criando os grupos de sprites
 lanhouse = new Group();
 viajandonamaionese = new Group();
+
+//Verificando a colisão do dino
+dinossauroCorrendoNaBlackFriday.debug = false;
+dinossauroCorrendoNaBlackFriday.setCollider("circle", 0, 0, 56);
 }
 
 //desenho
@@ -74,37 +78,39 @@ function draw(){
 background("white");
 
 if(estado === correnegada){
-    asfaltoquenaoeasfalto.velocityX = -2;
-} else if(estado === morreumorreu){
-
-}
-
-
+ PONTOSSSS+=Math.round(frameCount/60);
+ asfaltoquenaoeasfalto.velocityX = -2;
 if(asfaltoquenaoeasfalto.x<0) {
-asfaltoquenaoeasfalto.x = asfaltoquenaoeasfalto.width/2;
-}
-
-//tecla de espaço
+ asfaltoquenaoeasfalto.x = asfaltoquenaoeasfalto.width/2;
+ }
+ //tecla de espaço
 if(keyDown("space")&&dinossauroCorrendoNaBlackFriday.y>=150){
-dinossauroCorrendoNaBlackFriday.velocityY = -12;
-}
-
-//gravidade
+ dinossauroCorrendoNaBlackFriday.velocityY = -12;
+ }
+ //gravidade
 dinossauroCorrendoNaBlackFriday.velocityY += 1;
+//Chamar a função que vai criar as nuvens
+oporcovoltou();
 
+//Chamar a função que vai criar os cactos
+jorge();
+if(viajandonamaionese.isTouching(dinossauroCorrendoNaBlackFriday)) {
+estado = morreumorreu
+}
+} else if(estado === morreumorreu){
+asfaltoquenaoeasfalto.velocityX = 0;
+lanhouse.setVelocityXEach(0);
+viajandonamaionese.setVelocityXEach(0);
+}
 //dinossauro não cai da tela
 dinossauroCorrendoNaBlackFriday.collide(aviaodamulhermaravilha);
 
 //Desenha todos os sprites
 drawSprites();
 text(PONTOSSSS,500,50);
-PONTOSSSS+=Math.round(frameCount/60);
 
-//Chamar a função que vai criar as nuvens
-oporcovoltou();
 
-//Chamar a função que vai criar os cactos
-jorge();
+
 }
 
 function oporcovoltou(){
